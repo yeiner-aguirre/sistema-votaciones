@@ -11,6 +11,14 @@ const Candidate = sequelize.define('Candidate', {
     type: DataTypes.STRING,
     allowNull: false
   },
+  email: {  // cambios nuevo codigo
+    type: DataTypes.STRING,
+    allowNull: false,
+    unique: true,
+    validate: {
+      isEmail: true
+    }
+  },
   party: {
     type: DataTypes.STRING,
     allowNull: true

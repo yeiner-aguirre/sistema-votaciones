@@ -1,0 +1,382 @@
+{
+	"info": {
+		"_postman_id": "b98fdec6-250e-48e8-b057-992c1fead167",
+		"name": "sistema-votaciones",
+		"description": "API RESTful para gestionar votantes y candidatos, con autenticación, paginación, filtrado y rutas protegidas.EndFragment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33150163"
+	},
+	"item": [
+		{
+			"name": "Votantes",
+			"item": [
+				{
+					"name": "Crear votante",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "1234",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"astrid milena\",\r\n  \"email\": \"astrid@example.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/voters",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"voters"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar todos los votantes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/voters?page=1&limit=10\n",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"voters"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10\n"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener votante por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/voters/4\n",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"voters",
+								"4\n"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar votante (requiere autenticación)",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "1234",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/voters/3\n",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"voters",
+								"3\n"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Candidatos",
+			"item": [
+				{
+					"name": "Crear candidato",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"estiven\",\r\n  \"email\": \"estiven@example.com\",\r\n  \"party\": \"conservador\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/candidates",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"candidates"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar los candidatos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/candidates?page=1&limit=5\n",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"candidates"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "5\n"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener candidato por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/candidates/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"candidates",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar candidato (requiere autenticacion)",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "1234",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/candidates/3",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"candidates",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Votos",
+			"item": [
+				{
+					"name": "Emitir voto (requiere autenticación)",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "1234",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"voter_id\": 5,\r\n  \"candidate_id\": 4\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/votes",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"votes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener todos los votos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/votes",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"votes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ver estadísticas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/votes/statistics",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"votes",
+								"statistics"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "1234",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "admin",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:3000",
+			"type": "string"
+		},
+		{
+			"key": "auth_user",
+			"value": "admin",
+			"type": "string"
+		},
+		{
+			"key": "auth_pass",
+			"value": "1234",
+			"type": "string"
+		}
+	]
+}
